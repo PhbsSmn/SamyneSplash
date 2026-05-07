@@ -5,7 +5,7 @@ Simple, mobile-friendly personal website built with Eleventy.
 ## Why this setup
 
 - Content is authored in clean Markdown.
-- Styling and UI structure live in templates/CSS, not in Markdown files.
+- Styling and UI structure live in templates/CSS, not in Markdown content files.
 - Contact icons and profile metadata are rendered from structured data.
 
 ## Edit content
@@ -14,9 +14,10 @@ Main text content:
 
 - `src/content/hero.md`
 - `src/content/highlights.md`
+- `src/content/belief.md`
 - `src/content/now.md`
 
-Structured data (proofline, skill chips, contact links/icons):
+Structured data (site metadata, proofline, skills, contacts, links):
 
 - `src/_data/site.js`
 

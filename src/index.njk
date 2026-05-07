@@ -32,6 +32,7 @@
         </div>
 
         <p class="proofline">{{ site.proofline }}</p>
+        {% if site.subtitle %}<p class="subtitle">{{ site.subtitle }}</p>{% endif %}
         <div class="hero-markdown">{{ site.sections.hero | safe }}</div>
       </header>
 
@@ -43,6 +44,11 @@
           {% endfor %}
         </div>
         <div class="markdown-slot">{{ site.sections.highlights | safe }}</div>
+      </section>
+
+      <section class="card reveal reveal-delay-2" aria-labelledby="belief-title">
+        <h2 id="belief-title" class="belief-statement">Core belief</h2>
+        <div class="markdown-slot">{{ site.sections.belief | safe }}</div>
       </section>
 
       <section class="card reveal reveal-delay-2" aria-labelledby="now-title">
@@ -71,6 +77,11 @@
 
       <section class="card reveal reveal-delay-3" aria-labelledby="contact-title">
         <h2 id="contact-title">Say hello</h2>
+        <div class="markdown-slot">
+          <p>If you're dealing with a platform that feels heavier every quarter,<br />
+          or you're interested in comparing notes on modernization, observability, or .NET:<br />
+          I enjoy exchanging notes with other engineers navigating the same trade‑offs.<br />&nbsp;</p>
+        </div>
         <div class="contact-list">
           {% for item in site.contacts %}
             <p class="contact-line">

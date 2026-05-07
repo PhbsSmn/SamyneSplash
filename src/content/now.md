@@ -2,9 +2,7 @@
 permalink: false
 ---
 
-I am currently focused on:
-
-- Modernizing software platforms with an evolutionary, low-drama approach.
-- Building cloud-native .NET services that stay observable, secure, and maintainable.
-- Supporting teams across engineering and operations with shared technical context.
-- Using tools like Copilot in a deliberate way to improve delivery speed without lowering quality.
+- Helping teams navigate platform modernization without rewrites, because sometimes the best code is the code you already shipped.
+- Building .NET services that expose their state (observable), defend their boundaries (secure), and welcome new people (maintainable).
+- Bridging the gap between engineers and operations as systems live in both worlds.
+- Deliberately using AI tools to accelerate work while staying skeptical of the hype.

@@ -2,7 +2,6 @@
 permalink: false
 ---
 
-- Senior Software Engineer and Technology Lead at Transics (ZF) since 2020.
-- Helped drive the evolution of an on-premise platform toward a scalable cloud-native architecture.
-- Built robust services with a strong focus on security, observability, CI/CD, and infrastructure as code.
-- Regular speaker on .NET and cloud topics, both internally and externally.
+- Guided evolutionary migration of a monolithic on-premise platform to cloud-native .NET services by learning from teams with deep domain knowledge, then building the path forward together without starting from scratch.
+- Built observability, security, and infrastructure-as-code into the engineering culture. By influencing what matters through system design and organizational flow.
+- Share knowledge on modernizing .NET systems through speaking, writing, and working openly with teams.

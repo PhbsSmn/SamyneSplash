@@ -18,13 +18,16 @@ module.exports = {
   title: "Pieter Samyn | Senior Software Engineer",
   description:
     "Pieter Samyn's professional splash page with engineering highlights, current focus, and contact links.",
-  eyebrow: "About",
+  eyebrow: "For software engineers",
   proofline:
+    "Most mature software systems don't break. They slowly make change feel dangerous.",
+  subtitle:
     "Senior Software Engineer at Transics (ZF) since 2020 | Cloud modernization | .NET & cloud speaker",
   skills: [".NET", "Cloud Native", "Terraform", "CI/CD", "Observability"],
   sections: {
     hero: md.render(readMarkdown("hero.md")),
     highlights: md.render(readMarkdown("highlights.md")),
+    belief: md.render(readMarkdown("belief.md")),
     now: md.render(readMarkdown("now.md")),
   },
   elsewhere: [
@@ -33,7 +36,7 @@ module.exports = {
       text: "legacy.samyne.be",
       href: "https://legacy.samyne.be/",
       note:
-        "A restored archive of my music show and festival photography work, kept online as a tribute to that chapter and the people behind it.",
+        "Before focusing fully on software engineering, I spent years deeply involved in music shows and festival photography as a hobby. That chapter still shapes how I think about craft, collaboration, and building systems that quietly give something back.",
     },
     // {
     //   label: "Blog",
