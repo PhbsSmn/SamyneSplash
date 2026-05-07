@@ -26,6 +26,7 @@ jobs:
         run: |
           lftp -u "${{ secrets.SFTP_USER }},${{ secrets.SFTP_PASSWORD }}" sftp://${{ secrets.SFTP_HOST }} <<EOF
           set sftp:auto-confirm yes
+          mkdir -p /customers/***/www/splash
           mirror -R --delete _site /customers/***/www/splash
           quit
           EOF
