@@ -19,13 +19,13 @@ jobs:
       - run: npm ci
       - run: npm run build
 
-      - name: Deploy via SFTP
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.SFTP_HOST }}
-          username: ${{ secrets.SFTP_USER }}
-          password: ${{ secrets.SFTP_PASSWORD }}
-          port: ${{ secrets.SFTP_PORT }}
-          source: "_site/*"
-          target: "/customers/***/www/splash"
-          rm: true
+      - name: Install lftp
+        run: sudo apt-get install -y lftp
+      
+      - name: Deploy via SFTP (mirror)
+        run: |
+          lftp -u "${{ secrets.SFTP_USER }},${{ secrets.SFTP_PASSWORD }}" sftp://${{ secrets.SFTP_HOST }} <<EOF
+          set sftp:auto-confirm yes
+          mirror -R --delete _site /customers/***/www/splash
+          quit
+          EOF
