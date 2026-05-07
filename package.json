@@ -1,0 +1,16 @@
+{
+  "name": "samyne-root-splash",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Eleventy-powered professional splash page",
+  "scripts": {
+    "clean": "node -e \"require('node:fs').rmSync('_site',{recursive:true,force:true})\"",
+    "dev": "npm run clean && eleventy --serve",
+    "build": "npm run clean && eleventy",
+    "start": "npm run dev"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "markdown-it": "^14.1.0"
+  }
+}

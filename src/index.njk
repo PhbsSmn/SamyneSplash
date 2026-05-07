@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ site.title }}</title>
+    <meta name="description" content="{{ site.description }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=JetBrains+Mono:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <div class="backdrop" aria-hidden="true"></div>
+
+    <main class="site-shell">
+      <header class="hero reveal">
+        <div class="hero-top">
+          <p class="eyebrow">{{ site.eyebrow }}</p>
+          <button
+            id="theme-toggle"
+            class="theme-toggle"
+            type="button"
+            aria-label="Switch to light theme"
+            aria-pressed="false"
+          >
+            Light Mode
+          </button>
+        </div>
+
+        <p class="proofline">{{ site.proofline }}</p>
+        <div class="hero-markdown">{{ site.sections.hero | safe }}</div>
+      </header>
+
+      <section class="card reveal reveal-delay-1" aria-labelledby="highlights-title">
+        <h2 id="highlights-title">About me</h2>
+        <div class="tag-row" aria-label="Core skills">
+          {% for skill in site.skills %}
+            <span class="tag">{{ skill }}</span>
+          {% endfor %}
+        </div>
+        <div class="markdown-slot">{{ site.sections.highlights | safe }}</div>
+      </section>
+
+      <section class="card reveal reveal-delay-2" aria-labelledby="now-title">
+        <h2 id="now-title">Current focus</h2>
+        <div class="markdown-slot">{{ site.sections.now | safe }}</div>
+      </section>
+
+      <section class="card reveal reveal-delay-3" aria-labelledby="elsewhere-title">
+        <h2 id="elsewhere-title">Elsewhere</h2>
+        <ul class="resource-list">
+          {% for item in site.elsewhere %}
+            <li class="resource-item">
+              <p class="resource-label">{{ item.label }}</p>
+              {% if item.href %}
+                <p class="resource-main"><a href="{{ item.href }}">{{ item.text }}</a></p>
+              {% else %}
+                <p class="resource-main">{{ item.text }}</p>
+              {% endif %}
+              {% if item.note %}
+                <p class="resource-note">{{ item.note }}</p>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+
+      <section class="card reveal reveal-delay-3" aria-labelledby="contact-title">
+        <h2 id="contact-title">Say hello</h2>
+        <div class="contact-list">
+          {% for item in site.contacts %}
+            <p class="contact-line">
+              <span class="contact-icon{% if item.type == 'linkedin' %} brand-linkedin{% elseif item.type == 'github' %} brand-github{% endif %}" aria-label="{{ item.label }} icon">
+                {% if item.type == 'email' %}
+                  <svg class="icon-svg" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="M2.5 5.5h19v13h-19zm1.6 1.6v.6l7.9 5.3 7.9-5.3v-.6zm15.8 3.2-6.8 4.6c-.7.5-1.5.5-2.2 0l-6.8-4.6v6.6h15.8z"/></svg>
+                {% elseif item.type == 'linkedin' %}
+                  <svg class="icon-svg" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.56c0-1.33-.02-3.05-1.86-3.05-1.86 0-2.14 1.45-2.14 2.95v5.66H9.35V9h3.4v1.56h.05c.47-.9 1.63-1.86 3.36-1.86 3.6 0 4.26 2.37 4.26 5.45zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12M7.12 20.45H3.56V9h3.56z"/></svg>
+                {% elseif item.type == 'github' %}
+                  <svg class="icon-svg" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.41-4.04-1.41-.55-1.38-1.33-1.74-1.33-1.74-1.09-.74.09-.73.09-.73 1.2.09 1.83 1.22 1.83 1.22 1.07 1.82 2.81 1.29 3.5.99.11-.77.42-1.29.76-1.59-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.22-3.22-.12-.3-.53-1.52.12-3.17 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.29-1.23 3.29-1.23.66 1.65.25 2.87.13 3.17.76.84 1.22 1.91 1.22 3.22 0 4.61-2.8 5.62-5.49 5.92.43.37.81 1.09.81 2.21v3.27c0 .32.22.69.83.57A12 12 0 0 0 12 .5"/></svg>
+                {% elseif item.type == 'resume' %}
+                  <svg class="icon-svg" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="M6 2.5h8l4 4v15H6zm8 1.9v3.2h3.2zm-6.4-.3v16.8h8.8V14h4.1V8.2h-6.4V4.1z"/></svg>
+                {% elseif item.type == 'speaker' %}
+                  <svg class="icon-svg" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="M12 3.5a3.4 3.4 0 0 0-3.4 3.4v5.5a3.4 3.4 0 0 0 6.8 0V6.9A3.4 3.4 0 0 0 12 3.5m-4.8 8.3H5.6a6.4 6.4 0 0 0 5.6 6.2v2.5h1.6V18a6.4 6.4 0 0 0 5.6-6.2h-1.6a4.8 4.8 0 1 1-9.6 0"/></svg>
+                {% else %}
+                  <svg class="icon-svg" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="M12 2.5a9.5 9.5 0 1 0 9.5 9.5A9.5 9.5 0 0 0 12 2.5m6.9 8.7h-3.2a15.8 15.8 0 0 0-1.1-4.5 8 8 0 0 1 4.3 4.5m-6.1-5.2c.7 1.2 1.2 3.1 1.4 5.2h-4.4c.2-2.1.7-4 1.4-5.2.5-.9 1.1-.9 1.6 0M6.3 12c0-.4 0-.8.1-1.2h11.2c.1.4.1.8.1 1.2s0 .8-.1 1.2H6.4c-.1-.4-.1-.8-.1-1.2m1.1-5.3a15.8 15.8 0 0 0-1.1 4.5H3.1a8 8 0 0 1 4.3-4.5M3.1 12.8h3.2a15.8 15.8 0 0 0 1.1 4.5 8 8 0 0 1-4.3-4.5m8.1 5.2c-.7-1.2-1.2-3.1-1.4-5.2h4.4c-.2 2.1-.7 4-1.4 5.2-.5.9-1.1.9-1.6 0m3.4-.8a15.8 15.8 0 0 0 1.1-4.5h3.2a8 8 0 0 1-4.3 4.5"/></svg>
+                {% endif %}
+              </span>
+
+              {% if item.href %}
+                <a href="{{ item.href }}">{{ item.text }}</a>
+              {% else %}
+                {{ item.text }}
+              {% endif %}
+            </p>
+          {% endfor %}
+        </div>
+      </section>
+
+      <footer class="footer reveal reveal-delay-3">
+        <small>Built for easy updates in Markdown. Last refreshed: <span id="year"></span></small>
+      </footer>
+    </main>
+
+    <script src="assets/js/theme.js"></script>
+  </body>
+</html>
