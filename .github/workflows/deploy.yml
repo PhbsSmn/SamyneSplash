@@ -21,11 +21,13 @@ jobs:
 
       - name: Install lftp
         run: sudo apt-get install -y lftp
-      
+
       - name: Deploy via SFTP (mirror)
         run: |
           lftp -u "${{ secrets.SFTP_USER }},${{ secrets.SFTP_PASSWORD }}" sftp://${{ secrets.SFTP_HOST }} <<EOF
-          set sftp:auto-confirm yes
-          mirror -R --delete _site /customers/***/www/splash
-          quit
+            set sftp:auto-confirm yes
+            pwd
+            ls
+            mirror -R --delete _site ./splash
+            quit
           EOF
