@@ -26,6 +26,6 @@ jobs:
           username: ${{ secrets.SFTP_USER }}
           password: ${{ secrets.SFTP_PASSWORD }}
           port: ${{ secrets.SFTP_PORT }}
-          source: "dist/*"
+          source: "_site/*"
           target: "/customers/***/www/splash"
           rm: true
