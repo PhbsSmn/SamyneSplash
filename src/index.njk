@@ -16,8 +16,8 @@
   <body>
     <div class="backdrop" aria-hidden="true"></div>
 
-    <main class="site-shell">
-      <header class="hero reveal">
+    <main class="site-shell" data-parallax-container>
+      <header class="hero reveal" data-parallax data-depth="0.3">
         <div class="hero-top">
           <p class="eyebrow">{{ site.eyebrow }}</p>
           <button
@@ -36,7 +36,7 @@
         <div class="hero-markdown">{{ site.sections.hero | safe }}</div>
       </header>
 
-      <section class="card reveal reveal-delay-1" aria-labelledby="highlights-title">
+      <section class="card reveal reveal-delay-1" aria-labelledby="highlights-title" data-parallax data-depth="0.4">
         <h2 id="highlights-title">About me</h2>
         <div class="tag-row" aria-label="Core skills">
           {% for skill in site.skills %}
@@ -46,17 +46,17 @@
         <div class="markdown-slot">{{ site.sections.highlights | safe }}</div>
       </section>
 
-      <section class="card reveal reveal-delay-2" aria-labelledby="belief-title">
+      <section class="card reveal reveal-delay-2" aria-labelledby="belief-title" data-parallax data-depth="0.5">
         <h2 id="belief-title" class="belief-statement">Core belief</h2>
         <div class="markdown-slot">{{ site.sections.belief | safe }}</div>
       </section>
 
-      <section class="card reveal reveal-delay-2" aria-labelledby="now-title">
+      <section class="card reveal reveal-delay-2" aria-labelledby="now-title" data-parallax data-depth="0.5">
         <h2 id="now-title">Current focus</h2>
         <div class="markdown-slot">{{ site.sections.now | safe }}</div>
       </section>
 
-      <section class="card reveal reveal-delay-3" aria-labelledby="elsewhere-title">
+      <section class="card reveal reveal-delay-3" aria-labelledby="elsewhere-title" data-parallax data-depth="0.6">
         <h2 id="elsewhere-title">Elsewhere</h2>
         <ul class="resource-list">
           {% for item in site.elsewhere %}
@@ -75,7 +75,7 @@
         </ul>
       </section>
 
-      <section class="card reveal reveal-delay-3" aria-labelledby="contact-title">
+      <section class="card reveal reveal-delay-3" aria-labelledby="contact-title" data-parallax data-depth="0.6">
         <h2 id="contact-title">Say hello</h2>
         <div class="markdown-slot">
           <p>If you're dealing with a platform that feels heavier every quarter,<br />
@@ -111,7 +111,7 @@
         </div>
       </section>
 
-      <footer class="footer reveal reveal-delay-3">
+      <footer class="footer reveal reveal-delay-3" data-parallax data-depth="0.7">
         <small>Built for easy updates in Markdown. Last refreshed: <span id="year"></span></small>
       </footer>
     </main>

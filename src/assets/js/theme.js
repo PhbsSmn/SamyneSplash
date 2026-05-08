@@ -1,6 +1,10 @@
 const themeToggle = document.getElementById("theme-toggle");
 const THEME_KEY = "preferred-theme";
 
+// ============================================================================
+// THEME MANAGEMENT
+// ============================================================================
+
 function getPreferredTheme() {
   const savedTheme = localStorage.getItem(THEME_KEY);
   if (savedTheme === "dark" || savedTheme === "light") {
@@ -41,6 +45,69 @@ function setupThemeToggle() {
   });
 }
 
+// ============================================================================
+// PARALLAX SCROLL EFFECT
+// ============================================================================
+
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function setupParallax() {
+  if (prefersReducedMotion) {
+    return; // Skip parallax for users who prefer reduced motion
+  }
+
+  const parallaxContainer = document.querySelector("[data-parallax-container]");
+  if (!parallaxContainer) {
+    return;
+  }
+
+  const parallaxElements = parallaxContainer.querySelectorAll("[data-parallax]");
+  if (parallaxElements.length === 0) {
+    return;
+  }
+
+  let rafId;
+  let lastScrollY = 0;
+
+  function updateParallax() {
+    const currentScrollY = window.scrollY;
+    const deltaScroll = currentScrollY - lastScrollY;
+
+    // Only update if there's significant scroll movement (debouncing)
+    if (Math.abs(deltaScroll) > 0.5) {
+      lastScrollY = currentScrollY;
+
+      parallaxElements.forEach((element) => {
+        const depth = parseFloat(element.getAttribute("data-depth")) || 0.5;
+        const offset = currentScrollY * depth;
+        element.style.transform = `translateY(${offset}px)`;
+      });
+    }
+
+    rafId = requestAnimationFrame(updateParallax);
+  }
+
+  // Use Intersection Observer for better performance
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !rafId) {
+          rafId = requestAnimationFrame(updateParallax);
+        }
+      });
+    },
+    { threshold: 0 }
+  );
+
+  parallaxElements.forEach((element) => {
+    observer.observe(element);
+  });
+}
+
+// ============================================================================
+// UTILITY FUNCTIONS
+// ============================================================================
+
 function setYear() {
   const yearEl = document.getElementById("year");
   if (yearEl) {
@@ -48,5 +115,19 @@ function setYear() {
   }
 }
 
-setupThemeToggle();
-setYear();
+// ============================================================================
+// INITIALIZATION
+// ============================================================================
+
+// Run setup functions when DOM is ready
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => {
+    setupThemeToggle();
+    setupParallax();
+    setYear();
+  });
+} else {
+  setupThemeToggle();
+  setupParallax();
+  setYear();
+}
