@@ -56,13 +56,9 @@ function setupParallax() {
     return; // Skip parallax for users who prefer reduced motion
   }
 
-  const parallaxContainer = document.querySelector("[data-parallax-container]");
-  if (!parallaxContainer) {
-    return;
-  }
-
-  const parallaxElements = parallaxContainer.querySelectorAll("[data-parallax]");
-  if (parallaxElements.length === 0) {
+  // Get all parallax elements (both in site-shell and background layers)
+  const allParallaxElements = document.querySelectorAll("[data-parallax]");
+  if (allParallaxElements.length === 0) {
     return;
   }
 
@@ -77,7 +73,7 @@ function setupParallax() {
     if (Math.abs(deltaScroll) > 0.5) {
       lastScrollY = currentScrollY;
 
-      parallaxElements.forEach((element) => {
+      allParallaxElements.forEach((element) => {
         const depth = parseFloat(element.getAttribute("data-depth")) || 0.5;
         const offset = currentScrollY * depth;
         element.style.transform = `translateY(${offset}px)`;
@@ -99,7 +95,8 @@ function setupParallax() {
     { threshold: 0 }
   );
 
-  parallaxElements.forEach((element) => {
+  // Observe all parallax elements
+  allParallaxElements.forEach((element) => {
     observer.observe(element);
   });
 }

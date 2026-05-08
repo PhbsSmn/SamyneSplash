@@ -78,6 +78,97 @@ body {
     radial-gradient(circle at 88% 90%, rgba(255, 153, 0, 0.05), transparent 26%);
 }
 
+/* ============================================================================
+   ASCII BACKGROUND LAYERS - PARALLAX
+   ============================================================================ */
+
+.ascii-bg {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ascii-layer {
+  position: absolute;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  white-space: pre;
+  will-change: transform;
+  opacity: 0.08;
+}
+
+.ascii-layer-1 {
+  top: 5%;
+  left: 2%;
+  color: var(--accent-azure);
+  animation: floatLayer1 8s ease-in-out infinite;
+}
+
+.ascii-layer-2 {
+  top: 30%;
+  right: 3%;
+  color: var(--accent-darker-azure);
+  animation: floatLayer2 10s ease-in-out infinite;
+}
+
+.ascii-layer-3 {
+  top: 55%;
+  left: 5%;
+  color: var(--accent-aws);
+  animation: floatLayer3 12s ease-in-out infinite;
+}
+
+.ascii-layer-4 {
+  bottom: 10%;
+  right: 2%;
+  color: var(--accent);
+  animation: floatLayer4 9s ease-in-out infinite;
+}
+
+@keyframes floatLayer1 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes floatLayer2 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(6px); }
+}
+
+@keyframes floatLayer3 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes floatLayer4 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(8px); }
+}
+
+:root[data-theme="light"] .ascii-layer {
+  opacity: 0.06;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ascii-layer {
+    animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .ascii-layer {
+    font-size: 0.75rem;
+    opacity: 0.05;
+  }
+
+  :root[data-theme="light"] .ascii-layer {
+    opacity: 0.04;
+  }
+}
+
 .site-shell {
   position: relative;
   z-index: 1;
